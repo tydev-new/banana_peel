@@ -1,21 +1,29 @@
-# React + TypeScript + Vite
+# Project Tooling
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Creating GitHub issues from `docs/issues.json`
 
-While this project uses React, Vite supports many popular JS frameworks. [See all the supported frameworks](https://vitejs.dev/guide/#scaffolding-your-first-vite-project).
+This repository includes a helper script that can open GitHub issues based on
+the contents of `docs/issues.json`.
 
-## Deploy Your Own
+### Prerequisites
 
-Deploy your own Vite project with Vercel.
+- Node.js 18 or later (for the built-in `fetch` API used by the script)
+- A [classic personal access token](https://github.com/settings/tokens) with
+  the `repo` scope, exported as `GITHUB_TOKEN` when you want to create issues
+  for real
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/framework-boilerplates/vite-react&template=vite-react)
+### Usage
 
-_Live Example: https://vite-react-example.vercel.app_
+Run the npm script with the target repository in `owner/repo` form. Include the
+`--dry-run` flag to preview the issues without creating them.
 
-### Deploying From Your Terminal
+```bash
+# Preview the issues that would be created
+npm run create-issues -- my-org/my-repo --dry-run
 
-You can deploy your new Vite project with a single command from your terminal using [Vercel CLI](https://vercel.com/download):
-
-```shell
-$ vercel
+# Create the issues for real (requires GITHUB_TOKEN to be set)
+GITHUB_TOKEN=ghp_example npm run create-issues -- my-org/my-repo
 ```
+
+By default the script uses the public GitHub API. To target a GitHub Enterprise
+instance instead, set `GITHUB_API_URL` to your instance's REST API base URL.
