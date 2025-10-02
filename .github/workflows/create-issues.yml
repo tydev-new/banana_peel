@@ -1,0 +1,15 @@
+name: Create GitHub Issues
+on: { workflow_dispatch: {} }
+permissions: { issues: write, contents: read }
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Create issues from docs/issues.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node .github/scripts/create_issues.cjs
