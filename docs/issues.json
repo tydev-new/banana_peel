@@ -1,0 +1,137 @@
+[
+  {
+    "title": "chore: repo setup (Vite + React + TS), lint/format, CI, Vercel deploy",
+    "body": "**Scope**\n- Initialize Vite + React + TypeScript scaffold.\n- Add ESLint + Prettier + scripts (dev/build/preview/lint).\n- Add GitHub Actions CI (install → build → lint).\n- Vercel-ready config; `.vercelignore`; README notes for previews & `VITE_GEMINI_API_KEY`.\n\n**Deliverables**\n- Dev server runs; CI green.\n\n**AC**\n- [ ] `npm run dev` works (for locals)\n- [ ] CI passes on PRs\n- [ ] README has Vercel preview instructions\n",
+    "labels": ["m1","type:chore","area:infra"]
+  },
+  {
+    "title": "chore: add PR template with Vercel preview checklist",
+    "body": "**Scope**\n- Add `.github/pull_request_template.md` with Summary, AC checklist, and preview note.\n\n**AC**\n- [ ] New PRs show the template\n",
+    "labels": ["m1","type:chore","area:process"]
+  },
+  {
+    "title": "chore: Vercel project hookup (connect repo, env vars)",
+    "body": "**Scope (account action in Vercel UI)**\n- Connect GitHub repo.\n- Build: `npm run build`; Output: `dist/`.\n- Env vars: `VITE_GEMINI_API_KEY` for Prod/Preview/Dev.\n\n**AC**\n- [ ] Preview deploy works on a test PR\n- [ ] `main` deploy succeeds\n",
+    "labels": ["m1","type:chore","area:deploy"]
+  },
+  {
+    "title": "feat: canvas shell with pan/zoom + image render",
+    "body": "**Scope**\n- Mount Fabric canvas, implement pan/zoom, render placeholder image.\n\n**AC**\n- [ ] Pan/zoom works; image renders without jitter\n",
+    "labels": ["m1","type:feat","area:canvas"]
+  },
+  {
+    "title": "feat: import image with type/size validation",
+    "body": "**Scope**\n- File picker + drag&drop; PNG/JPG/WebP; ≤2048×2048; error messages.\n\n**AC**\n- [ ] Invalid/oversized files blocked; valid previewed\n",
+    "labels": ["m1","type:feat","area:import"]
+  },
+  {
+    "title": "feat: API key input (memory-only)",
+    "body": "**Scope**\n- In-memory API key field; cleared on refresh.\n\n**AC**\n- [ ] Requests include key; never persisted\n",
+    "labels": ["m1","type:feat","area:auth"]
+  },
+  {
+    "title": "feat: Gemini wrapper + request envelope",
+    "body": "**Scope**\n- ElementExtractionService: POST per design; debounce; 60s timeout; 1 retry on network error.\n\n**AC**\n- [ ] Returns raw response; typed errors for 401/429/5xx\n",
+    "labels": ["m1","type:feat","area:api"]
+  },
+  {
+    "title": "feat: prompt builder for element extraction",
+    "body": "**Scope**\n- System+user prompt templates (N,W,H).\n\n**AC**\n- [ ] Unit tests for template substitution/edge cases\n",
+    "labels": ["m1","type:feat","area:api"]
+  },
+  {
+    "title": "feat: parse & normalize Gemini response",
+    "body": "**Scope**\n- Extract JSON from candidates; strip fences; validate fields; defaults; drop bad elements.\n\n**AC**\n- [ ] Malformed responses handled; valid outputs match schema\n",
+    "labels": ["m1","type:feat","area:api"]
+  },
+  {
+    "title": "feat: compose scene into model",
+    "body": "**Scope**\n- Map normalized response → Scene; transforms; sort by zOrder.\n\n**AC**\n- [ ] Scene node count & ordering correct\n",
+    "labels": ["m1","type:feat","area:model"]
+  },
+  {
+    "title": "feat: render scene on canvas",
+    "body": "**Scope**\n- Render background at z=0; elements above; initial positions applied.\n\n**AC**\n- [ ] Visual order & positions correct\n",
+    "labels": ["m1","type:feat","area:canvas"]
+  },
+  {
+    "title": "feat: loading + error UI for generation",
+    "body": "**Scope**\n- Spinner overlay; toast for partial; banner for blocking errors.\n\n**AC**\n- [ ] States match success/partial/fail\n",
+    "labels": ["m1","type:feat","area:ux"]
+  },
+  {
+    "title": "feat: selection handles + focus behavior",
+    "body": "**Scope**\n- Single selection; resize/rotate handles; keyboard focus ring.\n\n**AC**\n- [ ] Tab cycles elements; handles toggle correctly\n",
+    "labels": ["m2","type:feat","area:canvas"]
+  },
+  {
+    "title": "feat: move/scale/rotate interactions",
+    "body": "**Scope**\n- Drag to move; corners to scale; rotate handle; constrain aspect default.\n\n**AC**\n- [ ] Values update; smooth re-render\n",
+    "labels": ["m2","type:feat","area:canvas"]
+  },
+  {
+    "title": "fix: clamp transforms within canvas bounds",
+    "body": "**Scope**\n- Prevent element from fully leaving canvas; minimal off-screen allowed.\n\n**AC**\n- [ ] Elements remain discoverable; clamped\n",
+    "labels": ["m2","type:fix","area:canvas"]
+  },
+  {
+    "title": "feat: z-order controls for elements",
+    "body": "**Scope**\n- Bring forward/back buttons + shortcuts; background locked.\n\n**AC**\n- [ ] Ordering updates deterministic; background unaffected\n",
+    "labels": ["m3","type:feat","area:canvas"]
+  },
+  {
+    "title": "feat: persist z-order in Scene model",
+    "body": "**Scope**\n- Ensure zOrder updates propagate to model & renderer.\n\n**AC**\n- [ ] Exported Scene JSON reflects new z-orders\n",
+    "labels": ["m3","type:feat","area:model"]
+  },
+  {
+    "title": "feat: delete selected element layer",
+    "body": "**Scope**\n- Confirm/remove layer; maintain selection state.\n\n**AC**\n- [ ] Layer removed; z-order sequence contiguous\n",
+    "labels": ["m4","type:feat","area:layers"]
+  },
+  {
+    "title": "feat: add external element as new layer",
+    "body": "**Scope**\n- Upload PNG (alpha); new layer at top z; initial transform near center.\n\n**AC**\n- [ ] Added element editable like others\n",
+    "labels": ["m4","type:feat","area:layers"]
+  },
+  {
+    "title": "feat: export single element layer as PNG",
+    "body": "**Scope**\n- Crop to element bounds; download; filename convention.\n\n**AC**\n- [ ] Bounds equal tight crop; alpha preserved\n",
+    "labels": ["m4","type:feat","area:export"]
+  },
+  {
+    "title": "feat: export flattened PNG of canvas",
+    "body": "**Scope**\n- Composite with alpha; download.\n\n**AC**\n- [ ] Visual parity with canvas at export time\n",
+    "labels": ["m5","type:feat","area:export"]
+  },
+  {
+    "title": "feat: export Scene JSON (v1)",
+    "body": "**Scope**\n- Include canvas size, layers, transforms, zOrder; version=1.\n\n**AC**\n- [ ] Validates against schema; round-trip passes\n",
+    "labels": ["m5","type:feat","area:export"]
+  },
+  {
+    "title": "feat: export all element layers as cropped PNGs",
+    "body": "**Scope**\n- Zip or sequential downloads; stable naming.\n\n**AC**\n- [ ] Each element exported once; bounds/alpha correct\n",
+    "labels": ["m5","type:feat","area:export"]
+  },
+  {
+    "title": "feat: undo/redo for transforms, z-order, add/delete, add external",
+    "body": "**Scope**\n- History stack with throttled entries; keyboard shortcuts.\n\n**AC**\n- [ ] Deterministic undo/redo across supported actions\n",
+    "labels": ["cross","type:feat","area:history"]
+  },
+  {
+    "title": "chore: a11y baseline for MVP",
+    "body": "**Scope**\n- Keyboard access to primary actions; ARIA labels; focus order.\n\n**AC**\n- [ ] Keyboard-only flow completes Task A\n",
+    "labels": ["cross","type:chore","area:a11y"]
+  },
+  {
+    "title": "chore: revoke object URLs, throttle re-renders",
+    "body": "**Scope**\n- Revoke on delete/export; avoid unnecessary rasterization.\n\n**AC**\n- [ ] Memory stable over session; no major leaks\n",
+    "labels": ["cross","type:chore","area:perf"]
+  },
+  {
+    "title": "chore: QA smoke tests for MVP scenarios",
+    "body": "**Scope**\n- Doc + scripts to validate import/generate/edit/export flows.\n\n**AC**\n- [ ] Checklist completed; issues filed for failures\n",
+    "labels": ["cross","type:chore","area:qa"]
+  }
+]
