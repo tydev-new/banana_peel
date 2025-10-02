@@ -12,4 +12,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: node .github/scripts/create_issues.js
+        run: node .github/scripts/create_issues.cjs
