@@ -1,5 +1,4 @@
-import { describe, expect, it } from 'vitest'
-import { vi } from 'vitest/mock'
+import { describe, expect, it, vi } from 'vitest'
 
 vi.mock('react-konva', () => ({
   Stage: () => null,
