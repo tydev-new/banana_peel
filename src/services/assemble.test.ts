@@ -17,7 +17,9 @@ describe('assemble', () => {
       { w: 800, h: 600 },
     )
 
-    expect(scene.layers).toEqual(['bg', 'elem-01'])
+    expect(scene.layers.length).toBe(2)
+    expect(scene.layers[0]).toBe('bg')
+    expect(scene.layers[1]).toBe('elem-01')
     expect(scene.layerMap['elem-01'].transform.tx).toBe(10)
   })
 })
